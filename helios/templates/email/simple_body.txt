@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-br">
+<title>{{default_from_name|safe|linebreaksbr}}</title>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<p><strong> Caro(a) {{voter.name}},</strong></p>
+
+<p>{{custom_message|safe|linebreaksbr}}
+
+<p>Isto é um teste</p>
+
+
+<p>Para votar nessa eleição, clique no link: {{election_vote_url}}</p>
+<br>
+{% ifequal voter.voter_type "password" %}
+<p><strong>Seu ID de eleitor:</strong> {{voter.voter_login_id}}
+<br><strong>Sua senha para votar nessa eleição:</strong> {{voter.voter_password}}</p>
+{% else %}
+<p>
+Autentique-se com sua conta de usuário {{voter.voter_type}}.
+</p>
+{% endifequal %}
+<br><br>
+--
+<br>
+<font style="" size="1" face="verdana, sans-serif"><b style="">Universidade Estadual de Ciências da Saúde de Alagoas - Reitoria</b>
+</font>
+<br>
+<font style="" size="1" face="verdana, sans-serif">Rua Doutor Jorge de Lima, 113, Trapiche da Barra, Maceió / AL - CEP: 57010-382</font>
+<br>
+<u><a href="http://www.uncisal.edu.br" target="_blank" style=""><font style="" face="verdana, sans-serif">www.uncisal.edu.br</font></a></u>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<p>
+Caro (a) {{voter.name}},
+</p>
+
+<p>{{custom_message|safe|linebreaksbr}}</p>
+<br>
+<p>
+Você pode acessar a eleição através do link {{election_vote_url}}
+</p>
+<br>
+--
+<br>
+<font style="" size="1" face="verdana, sans-serif"><b style="">Universidade Estadual de Ciências da Saúde de Alagoas - Reitoria</b>
+</font>
+<br>
+<font style="" size="1" face="verdana, sans-serif">Rua Doutor Jorge de Lima, 113, Trapiche da Barra, Maceió / AL - CEP: 57010-382</font>
+<br>
+<u><a href="http://www.uncisal.edu.br" target="_blank" style=""><font style="" face="verdana, sans-serif">www.uncisal.edu.br</font></a></u>

@@ -1,0 +1,61 @@
+{% extends base_html %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "Já Votou" %}{% endblock %}
+
+{% block content %}
+<script language="javascript">
+$(document).ready(function() {
+  $('#waiting_div').hide();
+});
+
+function show_waiting() {
+  $('#all_forms').hide();
+  $('#waiting_div').show();
+}
+
+// FIXME: set this to false once it's clear how to set it back to true
+// so that it's not easy to forget to cast a ballot
+var ready_to_unload = true;
+
+window.onbeforeunload = function(evt) {
+  if (ready_to_unload)
+    return;
+
+  if (typeof evt == 'undefined') {
+    evt = window.event;
+  }
+  
+  //var message = "You have not yet cast your ballot! Make sure to complete the voting process if you want your vote to count.";
+  var message = "Você ainda NÃO DEPOSITOU sua cédula na urna! Se você quiser que seu voto seja considerado, então complete todo o processo";
+
+  if (evt) {
+    evt.returnValue = message;
+  }
+  
+  return message;
+};
+
+</script>
+<div id="ballot-not-cast-yet" class="container-fluid">
+
+<div id="all_forms">
+
+{% if voter %}
+<p><br><br></p>
+	<h2><strong>{{election.name}}</strong></h2>
+	<h2 style="color:red">ATENÇÃO, {{voter.name}}!</h2>
+<div style="background: #ff000012;padding: 15px;border:1px solid red;font-size:18px;">   
+        <p><b><span>Esta cédula <span style="color:red;">NÃO</span> foi depositada na urna</span></b>, pois seu voto já foi registrado anteriormente em 
+			<b>{{voter.cast_at|date:"d"}} de {{voter.cast_at|date:"F"}} de {{voter.cast_at|date:"Y"}}, às {{voter.cast_at|time:"H:i:s"}}</b>;</p>
+<!--	<p><b>{{voter.name}}</b> já votou para <strong>{{election.name}}</strong></p> 
+	<p><b>{{voter.name}}</b>, seu voto já foi registrado em <b>{{voter.cast_at}}</b>; </p>  -->
+	<p>O voto anterior possui o seguinte código de confirmação: <b>{{voter.vote_hash}}</b></p>
+	<p>Confira o código acima com o que está no seu e-mail: <b>[VOTO DEPOSITADO] - {{election.name}}</b>.</p>
+</div>
+{% endif %}
+
+</div>
+</div> <!-- ballot-not-cast-yet -->
+<br>
+{% endblock %}
